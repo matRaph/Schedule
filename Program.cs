@@ -6,7 +6,8 @@ namespace Schedule
     {
         static void Main(string[] args)
         {
-            Schedule schedule = new Schedule(); 
+            
+            
         }
 
     }

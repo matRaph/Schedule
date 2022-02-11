@@ -27,6 +27,7 @@ namespace Schedule
 
         public void List()
         {
+            Console.WriteLine("Your schedule:\n");
             Console.WriteLine(("\n").PadRight(Console.WindowWidth, '-'));
             for (int i = 0; i < Appointment.Count; i++)
             {
@@ -34,5 +35,15 @@ namespace Schedule
             }
             Console.WriteLine(("").PadRight(Console.WindowWidth, '-'));
         }
+        public void Edit(int index, string newAppoint, string newDate)
+        {
+            Appointment[index] = newAppoint;
+            Dates[index] = DateTime.Parse(newDate);
+        }
+        public void ShowAppoint(int index)
+        {
+            Console.WriteLine($"{index + 1}.{Appointment[index]} \t {Dates[index]}");
+        }
+
     }
 }

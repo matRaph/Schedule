@@ -35,7 +35,7 @@ namespace Schedule
             Console.WriteLine(("").PadRight(Console.WindowWidth, '-'));
             for (int i = 0; i < Appointments.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. \t{ Appointments[i].Content}\t{ DateTime.Parse(Appointments[i].Date).ToString("dd/MM/yyyy") }" );
+                Console.WriteLine($"{i + 1}. \t{ Appointments[i].ToString()}" );
             }
             Console.WriteLine(("").PadRight(Console.WindowWidth, '-'));
             Console.WriteLine("\n");
@@ -53,5 +53,17 @@ namespace Schedule
             Appointments[index].Date = new_date;
         }
 
+        //Using Comparison<T> delegate to sort appointments by alpha
+        public void Sort_Alpha()
+        {
+            Appointments.Sort((x, y) => x.Content.CompareTo(y.Content));
+        }
+
+        //Using Comparison<T> delegate to sort appointments by date
+        public void Sort_Date()
+        {
+            Appointments.Sort((x, y) => DateTime.Parse(x.Date).CompareTo(DateTime.Parse(y.Date)));
+
+        }
     }
 }

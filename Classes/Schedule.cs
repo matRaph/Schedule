@@ -29,9 +29,9 @@ namespace Schedule
         }
 
         //Show all apointments
-        public void List()
+        public void List_Appoints()
         {
-            Console.WriteLine("Your schedule:\n");
+            Console.WriteLine("\nYour appointments:\n");
             Console.WriteLine(("").PadRight(Console.WindowWidth, '-'));
             for (int i = 0; i < Appointments.Count; i++)
             {

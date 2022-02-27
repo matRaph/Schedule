@@ -1,2 +1,2 @@
 # Schedule
-Simple Schedule .NET console project. 
+Simple Schedule .NET app. 

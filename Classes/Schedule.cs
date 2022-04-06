@@ -8,12 +8,12 @@ namespace Schedule
 {
      class Schedule
      {
-        private List<Appointment> Appointments = new List<Appointment>();
+        static List<Appointment> Appointments = new();
 
         //              Methods
 
         //Return Apointments size
-        public int Amount { get { return Appointments.Count; } }
+        public static int Amount { get { return Appointments.Count; } }
 
         //Insert new objet in Appointments
         public void Insert_Appoint(string content, string date)
@@ -29,20 +29,33 @@ namespace Schedule
         }
 
         //Show all apointments
-        public void List_Appoints()
+        public static string List_Appoints()
         {
-            Console.WriteLine("\nYour appointments:\n");
-            Console.WriteLine(("").PadRight(Console.WindowWidth, '-'));
+            string returnVar = "";
+            if (Appointments.Count <= 0)
+            {
+                returnVar += "You don't have any appointments yet" + Environment.NewLine;
+            }
+            else
+            {
+                returnVar += "Your appointments:" + Environment.NewLine;
+            }
+            //Console.WriteLine("\nYour appointments:\n");
+            //Console.WriteLine(("").PadRight(Console.WindowWidth, '-'));
             for (int i = 0; i < Appointments.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. \t{ Appointments[i].ToString()}" );
+                returnVar += $"{i + 1}. \t{ Appointments[i].ToString()}" + Environment.NewLine;
+
+                //Console.WriteLine($"{i + 1}. \t{ Appointments[i].ToString()}" );
             }
-            Console.WriteLine(("").PadRight(Console.WindowWidth, '-'));
-            Console.WriteLine("\n");
+            //Console.WriteLine(("").PadRight(Console.WindowWidth, '-'));
+            //Console.WriteLine("\n");
+
+            return returnVar;
         }
 
         //Edits content of an appointment choose by index
-        public void Edit_Content(int index, string new_content)
+        public static void Edit_Content(int index, string new_content)
         {
             Appointments[index].Content = new_content;
         }
@@ -60,7 +73,7 @@ namespace Schedule
         }
 
         //Using Comparison<T> delegate to sort appointments by date
-        public void Sort_Date()
+        public static void Sort_Date()
         {
             Appointments.Sort((x, y) => DateTime.Parse(x.Date).CompareTo(DateTime.Parse(y.Date)));
 

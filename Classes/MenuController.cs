@@ -9,15 +9,18 @@ namespace Schedule
 {
     class MenuController
     {
+
         public void Run_MainMenu()
         {
-            Schedule appoints = new Schedule();
+            //Schedule appoints = new Schedule();
             string prompt = @"
 This is your...
 +-+-+-+-+-+-+-+-+
 |S|C|H|E|D|U|L|E|
 +-+-+-+-+-+-+-+-+
+
 ";
+            prompt += Schedule.List_Appoints();
 
             string[] options = { "Insert", "Remove", "Edit", "Sort", "Exit", "About" };
             Menu menu = new Menu(prompt, options);

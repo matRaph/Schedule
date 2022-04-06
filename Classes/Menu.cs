@@ -13,7 +13,7 @@ namespace Schedule
         private string[] Options;
         private string Prompt;
 
-        Schedule schedule = new Schedule();
+        //Schedule schedule = new();
 
         //Constructor
         public Menu(string Prompt, string[] Options)
@@ -27,10 +27,6 @@ namespace Schedule
         {
             WriteLine(Prompt);
 
-            if (schedule.Amount > 0)
-            {
-                schedule.List_Appoints();
-            }
             for (int i = 0; i < Options.Length ; i++)
             {   
                 string currentOption = Options[i];
@@ -54,6 +50,7 @@ namespace Schedule
 
         public int Run()
         {
+
             ConsoleKey keyPressed;
             do
             {

@@ -28,7 +28,6 @@ namespace Schedule
             Appointments.RemoveAt(index);
         }
 
-        //Show all apointments
         public static string List_Appoints()
         {
             string returnVar = "";
@@ -40,16 +39,11 @@ namespace Schedule
             {
                 returnVar += "Your appointments:" + Environment.NewLine;
             }
-            //Console.WriteLine("\nYour appointments:\n");
-            //Console.WriteLine(("").PadRight(Console.WindowWidth, '-'));
+
             for (int i = 0; i < Appointments.Count; i++)
             {
                 returnVar += $"{i + 1}. \t{ Appointments[i].ToString()}" + Environment.NewLine;
-
-                //Console.WriteLine($"{i + 1}. \t{ Appointments[i].ToString()}" );
             }
-            //Console.WriteLine(("").PadRight(Console.WindowWidth, '-'));
-            //Console.WriteLine("\n");
 
             return returnVar;
         }

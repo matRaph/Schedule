@@ -9,6 +9,7 @@ namespace Schedule
 {
     class MenuController
     {
+        Schedule schedule = new();
 
         public void Run_MainMenu()
         {
@@ -29,7 +30,7 @@ This is your...
             switch (selectetIndex)
             {
                 case 0:
-
+                    Insert();
                     break;
                 case 1:
 
@@ -61,7 +62,21 @@ This is your...
             WriteLine("\nThis is a simple schedule manager made by Raphael Matias.");
             WriteLine("You can find me at about.me/raph.m");
             WriteLine("Hope you enjoy it :)");
-            WriteLine("Press any key to return to main menu\n");
+            WriteLine("Press any key to return to your schedule\n");
+            ReadKey(true);
+            Run_MainMenu();
+        }
+        private void Insert()
+        {
+            WriteLine("\nInsert the content of your appointment below:\n");
+            string content = ReadLine();
+            WriteLine("\nInsert the date of your appointment below:");
+            WriteLine("     --Use the format: mm/dd/yyyy. You can use any separator character (\"-\", \",\", \".\", \" \") instead of \"/\"\n");
+            string date = ReadLine();
+
+            schedule.Insert_Appoint(content, date);
+            WriteLine("\nYour appointment was added successfully!");
+            WriteLine("Press any key to return to your schedule\n");
             ReadKey(true);
             Run_MainMenu();
         }

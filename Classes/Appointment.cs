@@ -21,7 +21,7 @@ namespace Schedule
         //Overriding ToString() to return the properties of the appointment
         public override string ToString()
         {
-            return Content + "      " + DateTime.Parse(Date).ToString("MM/dd/yyyy");
+            return Content + "      " + DateTime.Parse(Date).ToString("dd/MM/yyyy");
         }
     }
 }

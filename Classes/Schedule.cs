@@ -25,7 +25,7 @@ namespace Schedule
         //Remove an appointment by index
         public void Remove_Appoint(int index)
         {
-            Appointments.RemoveAt(index);
+            Appointments.RemoveAt(index -1);
         }
 
         public static string List_Appoints()
@@ -49,15 +49,15 @@ namespace Schedule
         }
 
         //Edits content of an appointment choose by index
-        public static void Edit_Content(int index, string new_content)
+        public static void Edit_Content(int index , string new_content)
         {
-            Appointments[index].Content = new_content;
+            Appointments[index - 1].Content = new_content;
         }
 
         //Edits date of an appointment choose by index
-        public void Edit_Date(int index, string new_date)
+        public static void Edit_Date(int index, string new_date)
         {
-            Appointments[index].Date = new_date;
+            Appointments[index - 1].Date = new_date;
         }
 
         //Using Comparison<T> delegate to sort appointments by alpha

@@ -33,10 +33,10 @@ This is your...
                     Insert();
                     break;
                 case 1:
-
+                    Remove();
                     break;
                 case 2:
-
+                    Edit();
                     break;
                 case 3:
 
@@ -71,7 +71,7 @@ This is your...
             WriteLine("\nInsert the content of your appointment below:\n");
             string content = ReadLine();
             WriteLine("\nInsert the date of your appointment below:");
-            WriteLine("     --Use the format: mm/dd/yyyy. You can use any separator character (\"-\", \",\", \".\", \" \") instead of \"/\"\n");
+            WriteLine("     --Use the format: dd/mm/yyyy. You can use any separator character (\"-\", \",\", \".\", \" \") instead of \"/\"\n");
             string date = ReadLine();
 
             schedule.Insert_Appoint(content, date);
@@ -79,6 +79,43 @@ This is your...
             WriteLine("Press any key to return to your schedule\n");
             ReadKey(true);
             Run_MainMenu();
+        }
+        private void Remove()
+        {
+            WriteLine("\nInsert the index of the appointment you want to remove:\n");
+            int id = int.Parse(ReadLine());
+            schedule.Remove_Appoint(id);
+            WriteLine("Press any key to return to your schedule\n");
+            ReadKey(true);
+            Run_MainMenu();
+        }
+        private void Edit()
+        {
+            WriteLine("\nInsert the index of the appointment you would like to edit:\n");
+            int ID = int.Parse(ReadLine());
+            WriteLine("\nInsert 1 to edit de content or 2 to edit the date of the appointment:\n");
+            int choose = int.Parse(ReadLine());
+
+            if (choose == 1)
+            {
+                WriteLine("\nNew content:\n");
+                string new_cont = ReadLine();
+                Schedule.Edit_Content(ID, new_cont);
+                WriteLine("\nYour appointment was updated!\n");
+                WriteLine("Press any key to return to your schedule\n");
+                ReadKey(true);
+                Run_MainMenu();
+            }
+            else
+            {
+                WriteLine("\nNew date:\n");
+                string new_date = ReadLine();
+                Schedule.Edit_Date(ID, new_date);
+                WriteLine("\nYour appointment was updated!\n");
+                WriteLine("Press any key to return to your schedule\n");
+                ReadKey(true);
+                Run_MainMenu();
+            }
         }
     }
 }

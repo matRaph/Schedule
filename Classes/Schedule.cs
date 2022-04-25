@@ -84,5 +84,10 @@ namespace Schedule
 
             return arrStr;
         }
+
+        public static string Return_Appoint(int index)
+        {
+            return Appointments[index].ToString();
+        }
     }
 }

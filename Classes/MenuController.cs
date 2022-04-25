@@ -10,21 +10,19 @@ namespace Schedule
     class MenuController
     {
         Schedule schedule = new();
-
-        public void Run_MainMenu()
-        {
-            //Schedule appoints = new Schedule();
-            string prompt = @"
+        string mainStr = @"
 This is your...
 +-+-+-+-+-+-+-+-+
 |S|C|H|E|D|U|L|E|
 +-+-+-+-+-+-+-+-+
 
 ";
-            prompt += Schedule.List_Appoints();
-
+        public void Run_MainMenu()
+        {
+            string prompt = mainStr + Schedule.List_Appoints();
+            //Schedule appoints = new Schedule();
             string[] options = { "Insert", "Remove", "Edit", "Sort", "Exit", "About" };
-            Menu menu = new Menu(prompt, options);
+            Menu menu = new(prompt, options);
             int selectetIndex = menu.Run();
 
             switch (selectetIndex)
@@ -78,13 +76,25 @@ This is your...
         }
         private void Remove()
         {
-            WriteLine("\nInsert the index of the appointment you want to remove:\n");
-            int id = int.Parse(ReadLine());
-            schedule.Remove_Appoint(id);
+            if (Schedule.Amount <= 0)
+            {
+                WriteLine("\nYou still don't have any appointment");
+                ReturnFunc();
+            }
+
+            int choosed = ChooseAppoint("remove:");
+
+            if (choosed == -1)
+            {
+                ReturnFunc();
+            }
+            schedule.Remove_Appoint(choosed);
+            WriteLine("Your appointment was removed");
             ReturnFunc();
         }
         private void Edit()
         {
+
             WriteLine("\nInsert the index of the appointment you would like to edit:\n");
             int ID = int.Parse(ReadLine());
             WriteLine("\nInsert 1 to edit de content or 2 to edit the date of the appointment:\n");
@@ -107,21 +117,51 @@ This is your...
                 ReturnFunc();
             }
         }
-        private void Sort() {
-            WriteLine("\nInsert 1 to sort by content and 2 to sort by date:\n");
-            int sort = int.Parse(ReadLine());
-            if (sort == 1)
+        private void Sort() { 
+            string prompt = mainStr + Schedule.List_Appoints() + "\nSort by:";
+            string[] options = { "Content", "Date", "Cancel" };
+
+            Menu menuSort = new(prompt, options);
+            int selectedIndex = menuSort.Run();
+
+            if (selectedIndex == 0)
             {
                 Schedule.Sort_Alpha();
             }
-            if (sort == 2)
+            else if (selectedIndex == 1)
             {
                 Schedule.Sort_Date();
             }
-            WriteLine("\nYour schedule is now sorted!");
+            else if (selectedIndex == 2)
+            {
+                ReturnFunc();
+            }
             ReturnFunc();
         }
 
+        private int ChooseAppoint(string funcName)
+        {
+            //Let user choose the appointment to make change or cancel the operation
+            //Returns the index of the choosed appointment, if "Cancel" is selected, returns -1
+
+            string prompt = mainStr + "Choose the appointment you'd like to " + funcName;
+
+            List<string> appoints = Schedule.Appoints_Str();
+            appoints.Add("Cancel");
+
+            Menu menuSort = new(prompt, appoints.ToArray());
+            int selectedIndex = menuSort.Run();
+
+            if (appoints[selectedIndex] == "Cancel")
+            {
+                return -1;
+            }
+            return selectedIndex;
+        }
+        private bool AreYouSure()
+        {
+            return true;
+        }
         private void ReturnFunc()
         {
             WriteLine("Press any key to return to your schedule\n");

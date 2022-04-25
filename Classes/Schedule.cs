@@ -25,7 +25,7 @@ namespace Schedule
         //Remove an appointment by index
         public void Remove_Appoint(int index)
         {
-            Appointments.RemoveAt(index -1);
+            Appointments.RemoveAt(index);
         }
 
         public static string List_Appoints()
@@ -71,6 +71,18 @@ namespace Schedule
         {
             Appointments.Sort((x, y) => DateTime.Parse(x.Date).CompareTo(DateTime.Parse(y.Date)));
 
+        }
+
+        public static List<string> Appoints_Str()
+        {
+            List<string> arrStr = new();
+
+            foreach (var item in Appointments)
+            {
+                arrStr.Add(item.ToString());
+            }
+
+            return arrStr;
         }
     }
 }

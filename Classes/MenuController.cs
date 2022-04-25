@@ -39,7 +39,7 @@ This is your...
                     Edit();
                     break;
                 case 3:
-
+                    Sort();
                     break;
                 case 4:
                     ExitProgram();
@@ -62,9 +62,7 @@ This is your...
             WriteLine("\nThis is a simple schedule manager made by Raphael Matias.");
             WriteLine("You can find me at about.me/raph.m");
             WriteLine("Hope you enjoy it :)");
-            WriteLine("Press any key to return to your schedule\n");
-            ReadKey(true);
-            Run_MainMenu();
+            ReturnFunc();
         }
         private void Insert()
         {
@@ -76,18 +74,14 @@ This is your...
 
             schedule.Insert_Appoint(content, date);
             WriteLine("\nYour appointment was added successfully!");
-            WriteLine("Press any key to return to your schedule\n");
-            ReadKey(true);
-            Run_MainMenu();
+            ReturnFunc();
         }
         private void Remove()
         {
             WriteLine("\nInsert the index of the appointment you want to remove:\n");
             int id = int.Parse(ReadLine());
             schedule.Remove_Appoint(id);
-            WriteLine("Press any key to return to your schedule\n");
-            ReadKey(true);
-            Run_MainMenu();
+            ReturnFunc();
         }
         private void Edit()
         {
@@ -102,9 +96,7 @@ This is your...
                 string new_cont = ReadLine();
                 Schedule.Edit_Content(ID, new_cont);
                 WriteLine("\nYour appointment was updated!\n");
-                WriteLine("Press any key to return to your schedule\n");
-                ReadKey(true);
-                Run_MainMenu();
+                ReturnFunc();
             }
             else
             {
@@ -112,10 +104,29 @@ This is your...
                 string new_date = ReadLine();
                 Schedule.Edit_Date(ID, new_date);
                 WriteLine("\nYour appointment was updated!\n");
-                WriteLine("Press any key to return to your schedule\n");
-                ReadKey(true);
-                Run_MainMenu();
+                ReturnFunc();
             }
+        }
+        private void Sort() {
+            WriteLine("\nInsert 1 to sort by content and 2 to sort by date:\n");
+            int sort = int.Parse(ReadLine());
+            if (sort == 1)
+            {
+                Schedule.Sort_Alpha();
+            }
+            if (sort == 2)
+            {
+                Schedule.Sort_Date();
+            }
+            WriteLine("\nYour schedule is now sorted!");
+            ReturnFunc();
+        }
+
+        private void ReturnFunc()
+        {
+            WriteLine("Press any key to return to your schedule\n");
+            ReadKey(true);
+            Run_MainMenu();
         }
     }
 }

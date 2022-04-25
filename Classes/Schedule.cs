@@ -61,7 +61,7 @@ namespace Schedule
         }
 
         //Using Comparison<T> delegate to sort appointments by alpha
-        public void Sort_Alpha()
+        public static void Sort_Alpha()
         {
             Appointments.Sort((x, y) => x.Content.CompareTo(y.Content));
         }
